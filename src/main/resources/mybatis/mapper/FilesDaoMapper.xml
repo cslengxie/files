@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crx.dao.FilesDao">
+
+    <delete id="delete">
+        delete from t_files where id = #{id}
+    </delete>
+
+    <update id="update">
+        update t_files set oldFileName=#{oldFileName},newFileName=#{newFileName},ext=#{ext},path=#{path},
+        size=#{size},type=#{type},isImg=#{isImg},downCounts=#{downCounts},
+        uploadTime=#{uploadTime},userId=#{userId} where id = #{id}
+    </update>
+
+    <insert id="save">
+        insert into t_files(oldFileName,newFileName,ext,path,size,type,isImg,downCounts,uploadTime,userId)
+        values(#{oldFileName},#{newFileName},#{ext},#{path},#{size},#{type},#{isImg},#{downCounts},#{uploadTime},#{userId})
+    </insert>
+
+
+    <select id="findByUserId" resultType="com.crx.entity.Files">
+        select id,oldFileName,newFileName,ext,path,size,type,isImg,downCounts,
+        uploadTime,userId
+        from t_files where userId = #{id}
+    </select>
+    <select id="findById" resultType="com.crx.entity.Files">
+        select id,oldFileName,newFileName,ext,path,size,type,isImg,downCounts,
+        uploadTime,userId
+        from t_files where id = #{id}
+    </select>
+</mapper>
